@@ -140,9 +140,10 @@ listener.join
 
 ## Platform Support
 
-- **macOS**: Full support using Quartz and Cocoa frameworks
-- **Linux**: Full support using X11 and evdev
-- **Windows**: Full support using Win32 API
+- **macOS**: Full support using Quartz and Cocoa frameworks.
+  - *Note*: Monitoring input (listeners) requires the application (Terminal, IDE, or Ruby process) to be granted Accessibility permissions in System Settings -> Privacy & Security -> Accessibility.
+- **Linux**: Placeholder support (future: X11 and evdev)
+- **Windows**: Placeholder support (future: Win32 API)
 
 ## License
 

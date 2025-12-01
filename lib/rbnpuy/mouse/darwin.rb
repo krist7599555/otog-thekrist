@@ -2,6 +2,7 @@
 
 require 'ffi'
 require_relative 'base'
+require_relative '../darwin_util'
 
 module Rbnpuy
   module Mouse

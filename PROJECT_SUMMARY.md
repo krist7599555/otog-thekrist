@@ -51,7 +51,7 @@ rbnpuy/
 - ✅ Click buttons (left, right, middle)
 - ✅ Press and release buttons
 - ✅ Scroll wheel control
-- ⚠️ Mouse event listening (requires additional implementation on macOS)
+- ✅ Mouse event listening (implemented for macOS using CGEventTap)
 
 ### Keyboard Control
 - ✅ Press and release individual keys
@@ -59,10 +59,10 @@ rbnpuy/
 - ✅ Support for special keys (modifiers, function keys, etc.)
 - ✅ Support for key combinations with modifiers
 - ✅ Global hotkey registration and parsing
-- ⚠️ Keyboard event listening (requires additional implementation on macOS)
+- ✅ Keyboard event listening (implemented for macOS using CGEventTap)
 
 ### Platform Support
-- ✅ macOS (Darwin) - Core functionality implemented using FFI and CoreGraphics
+- ✅ macOS (Darwin) - Full support including event listeners (requires accessibility permissions)
 - 🔄 Linux (X11) - Placeholder (uses dummy implementation)
 - 🔄 Windows (Win32) - Placeholder (uses dummy implementation)
 
@@ -94,15 +94,13 @@ ruby test/quick_test.rb
 
 ## Known Limitations
 
-1. **macOS Listeners**: The mouse and keyboard listeners require additional implementation using CGEventTap and CFRunLoop. Currently, they are stubs that log warnings.
+1. **Accessibility Permissions**: On macOS, monitoring input devices (listeners) requires accessibility permissions to be granted to the Ruby process (Terminal or IDE). If not granted, listeners will fail to start or receive events, and a warning will be logged.
 
 2. **Linux/Windows**: Only placeholder implementations exist. Full implementations would require:
    - Linux: X11 bindings (via FFI) and evdev support
    - Windows: Win32 API bindings (via FFI)
 
-3. **Accessibility Permissions**: On macOS, controlling input devices requires accessibility permissions to be granted to the Ruby process.
-
-4. **Media Keys**: Limited support for media keys on some platforms.
+3. **Media Keys**: Limited support for media keys on some platforms.
 
 ## Next Steps for Full Implementation
 

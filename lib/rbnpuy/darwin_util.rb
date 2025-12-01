@@ -5,8 +5,8 @@ require 'ffi'
 module Rbnpuy
   module DarwinUtil
     extend FFI::Library
-    ffi_lib '/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices'
-    ffi_lib '/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation'
+    ffi_lib ['/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices',
+             '/System/Library/Frameworks/CoreFoundation.framework/CoreFoundation']
 
     # CoreFoundation types
     typedef :pointer, :CFMachPortRef
@@ -96,13 +96,11 @@ module Rbnpuy
           mask = self.class::EVENTS_MASK
 
           # Create event tap
-          # kCGSessionEventTap = 0
-          # kCGHeadInsertEventTap = 0
-          options = @suppress ? DarwinUtil::kCGEventTapOptionDefault : DarwinUtil::kCGEventTapOptionListenOnly
+          options = @suppress ? DarwinUtil::KCGEventTapOptionDefault : DarwinUtil::KCGEventTapOptionListenOnly
           
           @tap = DarwinUtil.CGEventTapCreate(
-            DarwinUtil::kCGSessionEventTap,
-            DarwinUtil::kCGHeadInsertEventTap,
+            DarwinUtil::KCGSessionEventTap,
+            DarwinUtil::KCGHeadInsertEventTap,
             options,
             mask,
             @callback_proc,
@@ -126,7 +124,7 @@ module Rbnpuy
           
           # Run loop
           while @running
-            result = DarwinUtil.CFRunLoopRunInMode(DarwinUtil.kCFRunLoopDefaultMode, 0.1, false)
+            _result = DarwinUtil.CFRunLoopRunInMode(DarwinUtil.kCFRunLoopDefaultMode, 0.1, false)
             # 0.1 second timeout allows us to check @running flag
           end
         ensure
@@ -149,20 +147,13 @@ module Rbnpuy
 
         def _handler(proxy, type, event, refcon)
           # Check if injected
-          pid = DarwinUtil.CGEventGetIntegerValueField(event, DarwinUtil::kCGEventSourceUnixProcessID)
+          pid = DarwinUtil.CGEventGetIntegerValueField(event, DarwinUtil::KCGEventSourceUnixProcessID)
           is_injected = pid != 0
 
-          result = _handle_message(proxy, type, event, refcon, is_injected)
+          _result = _handle_message(proxy, type, event, refcon, is_injected)
           
           if @suppress
             # If suppressing, we return NULL to eat the event, or the event itself to pass it
-            # But wait, if we are in ListenOnly mode, we can't suppress.
-            # If we are in Default mode, we can suppress by returning NULL.
-            # The logic in pynput:
-            # if self._intercept is not None: return self._intercept(...)
-            # elif self.suppress: return None
-            # else: return event
-            
             return nil # Suppress
           end
           
