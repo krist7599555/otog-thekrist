@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @task, mode: :full do %>
+  <div>
+    <%= link_to "แก้ไข this task", edit_task_path(@task) %> |
+    <%= link_to "Back to tasks", tasks_path %>
+  </div>
+<% end %>
+
+<div class="box">
+  <div class="is-size-4 has-text-weight-bold mb-2">
+    ส่งคำตอบ
+  </div>
+
+  <%= render '/submissions/form', submission: Submission.new(task: Task.new(id: @task[:id]), user: User.new(id: 1)) do %>
+  <% end %>
+</div>

@@ -1,0 +1,26 @@
+<%= form_with(model: submission) do |form| %>
+  <%= yield(:header) %>
+
+  <% if submission.errors.any? %>
+    <div style="color: red">
+      <h2>
+        <%= pluralize(submission.errors.count, "error") %> prohibited this
+        submission from being saved:
+      </h2>
+
+      <ul>
+        <% submission.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.text_field :user_id, readonly: true %>
+  <%= form.text_field :task_id, readonly: true %>
+
+  <%= form.text_field :lang, value: "cpp", readonly: true %>
+  <%= form.text_area :source_code %>
+
+  <div><%= form.submit %></div>
+<% end %>

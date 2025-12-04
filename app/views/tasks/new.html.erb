@@ -1,0 +1,9 @@
+<% content_for :title, "New task" %>
+
+<h1 class="has-text-weight-bold is-size-3">Create New task</h1>
+
+<%= render "form", task: @task %>
+
+<br>
+
+<div><%= link_to "Back to tasks", tasks_path %></div>

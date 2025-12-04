@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  task: one
+  source_code: MyText
+  lang: MyString
+  grading_status: MyString
+  grading_detail: MyString
+  time_used: 1
+  score: 1
+
+two:
+  user: two
+  task: two
+  source_code: MyText
+  lang: MyString
+  grading_status: MyString
+  grading_detail: MyString
+  time_used: 1
+  score: 1

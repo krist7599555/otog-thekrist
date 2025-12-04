@@ -1,0 +1,21 @@
+<div class="box" id="<%= dom_id submission %>">
+  <div class="field">
+    หมายเลขการส่ง:
+    <%= link_to submission.id, "/submissions/#{submission.id}" %>
+    <br>
+    โจทย์: <%= link_to submission.task.name, "/tasks/#{submission.task.id}" %>
+    <br>
+    โดย: <%= link_to submission.user.name, "/users/#{submission.user.id}" %>
+    <br>
+    เมื่อ: <%= l(submission.created_at, format: :short) %>
+    (<%= time_ago_in_words(submission.created_at) %>)
+    <br>
+    ผลการตรวจ: (<%= submission.score %>)
+    <br>
+    ผลการตรวจ: <%= submission.grading_detail %>
+  </div>
+
+  <pre class="field mt-2"><%= submission.source_code %></pre>
+
+  <%= yield %>
+</div>

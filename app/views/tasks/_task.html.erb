@@ -1,0 +1,48 @@
+<div class="box" id="<%= dom_id task %>">
+  <div class="field has-text-weight-bold is-size-4">
+    <%= task.id %>. <%= task.name %>
+  </div>
+
+  <% if mode == :full %>
+    <pre class="field"><%= task.markdown %></pre>
+    <% if task.grading_command.present? %>
+      <pre class="field">GRADING_COMMAND: <%= task.grading_command %></pre>
+    <% end %>
+  <% end %>
+
+  <div class="box">
+    <b class="is-size-7 mr-2"> PDF </b>
+
+    <% if task.pdf.attached? %>
+      <%= link_to task.pdf.filename, rails_blob_path(task.pdf, disposition: "attachment"), class: "tag is-secondary" %>
+    <% else %>
+      <span class="is-size-7 has-text-danger">ไม่มี</span>
+    <% end %>
+
+    <b class="is-size-7 mr-2 ml-4"> FILES </b>
+
+    <% if task.files.attached? %>
+      <% task.files.each do |file| %>
+        <%= link_to file.filename, rails_blob_path(file, disposition: "attachment"), class: "tag is-secondary" %>
+      <% end %>
+    <% else %>
+      <span class="is-size-7 has-text-danger">ไม่มี</span>
+    <% end %>
+  </div>
+
+  <% if mode != :full %>
+    <%= link_to "อ่านโจทย์", task, class: "button is-primary" %>
+  <% end %>
+
+  <div class="content">
+    <ol>
+      <% task.submission.each do |s| %>
+        <% date_str = l(s.created_at, format: :short) %>
+
+        <li>
+          <%= link_to "Sub(id=#{s.id}) เคยส่งเมื่อ #{date_str}", "/submissions/#{s.id}" %>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>

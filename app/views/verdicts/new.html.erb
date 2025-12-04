@@ -1,0 +1,11 @@
+<% content_for :title, "New verdict" %>
+
+<h1>New verdict</h1>
+
+<%= render "form", verdict: @verdict %>
+
+<br>
+
+<div>
+  <%= link_to "Back to verdicts", verdicts_path %>
+</div>

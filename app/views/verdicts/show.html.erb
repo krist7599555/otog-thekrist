@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @verdict %>
+
+<div>
+  <%= link_to "Edit this verdict", edit_verdict_path(@verdict) %> |
+  <%= link_to "Back to verdicts", verdicts_path %>
+
+  <%= button_to "Destroy this verdict", @verdict, method: :delete %>
+</div>

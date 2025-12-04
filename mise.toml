@@ -1,0 +1,3 @@
+[tasks]
+dev = "./bin/dev"
+format = "rake standard:fix"

@@ -1,0 +1,16 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Verdicts" %>
+
+<h1>Verdicts</h1>
+
+<div id="verdicts">
+  <% @verdicts.each do |verdict| %>
+    <%= render verdict %>
+    <p>
+      <%= link_to "Show this verdict", verdict %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New verdict", new_verdict_path %>

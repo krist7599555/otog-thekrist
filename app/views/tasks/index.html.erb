@@ -1,0 +1,15 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Tasks" %>
+
+<div class="is-flex is-align-items-center">
+  <h1 class="has-text-weight-bold is-size-3">Tasks</h1>
+  <%= link_to "New task", new_task_path, class: "button is-primary is-small ml-2" %>
+</div>
+
+<div id="tasks">
+  <% @tasks.each do |task| %>
+    <%= render task, mode: :mini do %>
+    <% end %>
+  <% end %>
+</div>
