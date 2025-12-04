@@ -22,9 +22,13 @@ module Rbnput
               end
 
     # Export backend classes
+    remove_const(:KeyCode) if const_defined?(:KeyCode)
     KeyCode = backend::KeyCode
+    remove_const(:Key) if const_defined?(:Key)
     Key = backend::Key
+    remove_const(:Controller) if const_defined?(:Controller)
     Controller = backend::Controller
+    remove_const(:Listener) if const_defined?(:Listener)
     Listener = backend::Listener
 
     # Modifier keys mapping

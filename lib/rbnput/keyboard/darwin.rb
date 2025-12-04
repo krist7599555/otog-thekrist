@@ -4,6 +4,7 @@ require 'ffi'
 require_relative 'base'
 require_relative '../darwin_util'
 
+
 module Rbnput
   module Keyboard
     # macOS implementation using Quartz/CoreGraphics
@@ -123,7 +124,6 @@ module Rbnput
 
         def _handle(key, is_press)
           resolved_key = key.is_a?(Base::KeyCode) ? key : _resolve(key)
-          
           # Get the virtual key code
           vk = if resolved_key.respond_to?(:vk)
                  resolved_key.vk
@@ -238,9 +238,9 @@ module Rbnput
           
           case type
           when KCGEventKeyDown
-            on_press(key, injected)
+            on_press&.call(key, injected)
           when KCGEventKeyUp
-            on_release(key, injected)
+            on_release&.call(key, injected)
           when KCGEventFlagsChanged
             # Flags changed is tricky because it doesn't tell us if it's press or release
             # We need to track state or check flags
@@ -250,7 +250,7 @@ module Rbnput
             
             # Simplified: just notify press for now if we can identify the key
             # Real implementation needs to check if the specific flag bit changed
-            on_press(key, injected)
+            on_press&.call(key, injected)
           end
         end
 

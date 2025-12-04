@@ -1,0 +1,4 @@
+example_id                 | status | run_time        |
+-------------------------- | ------ | --------------- |
+./spec/rbnput_spec.rb[1:1] | passed | 0.00089 seconds |
+./spec/rbnput_spec.rb[1:2] | passed | 0.00114 seconds |

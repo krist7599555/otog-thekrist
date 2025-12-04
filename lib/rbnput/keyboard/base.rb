@@ -126,7 +126,7 @@ module Rbnput
       MEDIA_PREVIOUS = KeyCode.from_vk(0xB1)
       MEDIA_NEXT = KeyCode.from_vk(0xB0)
     end
-
+    
     # Base controller for sending virtual keyboard events
     class Controller
       attr_reader :log

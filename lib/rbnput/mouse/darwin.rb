@@ -148,11 +148,11 @@ module Rbnput
 
           case type
           when KCGEventMouseMoved, KCGEventLeftMouseDragged, KCGEventRightMouseDragged, KCGEventOtherMouseDragged
-            on_move(x, y, injected)
+            on_move&.call(x, y, injected)
           when KCGEventScrollWheel
             dy = DarwinUtil.CGEventGetIntegerValueField(event, DarwinUtil::kCGScrollWheelEventDeltaAxis1)
             dx = DarwinUtil.CGEventGetIntegerValueField(event, DarwinUtil::kCGScrollWheelEventDeltaAxis2)
-            on_scroll(x, y, dx, dy, injected)
+            on_scroll&.call(x, y, dx, dy, injected)
           else
             # Button events
             button = case type
@@ -167,7 +167,7 @@ module Rbnput
                      end
             
             pressed = [KCGEventLeftMouseDown, KCGEventRightMouseDown, KCGEventOtherMouseDown].include?(type)
-            on_click(x, y, button, pressed, injected)
+            on_click&.call(x, y, button, pressed, injected)
           end
         end
       end

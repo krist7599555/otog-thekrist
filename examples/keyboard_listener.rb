@@ -8,17 +8,26 @@ puts "=== Keyboard Listener Example ==="
 puts "Press any keys. Press Ctrl+C to exit."
 puts
 
+def get_constant_name_by_value(value, mod = Rbnput::Keyboard::Key)
+  name = mod.constants.find do |const_name|
+    mod.const_get(const_name) == value
+  end
+  return "<#{name}>" if name
+end
+
+
+
+
 # Define callbacks
 on_press = lambda do |key, injected|
   return if injected
-  
-  puts "Key pressed: #{key}"
+  puts "Key pressed: #{key} #{get_constant_name_by_value(key)}"
 end
 
 on_release = lambda do |key, injected|
   return if injected
   
-  puts "Key released: #{key}"
+  puts "Key released: #{key} #{get_constant_name_by_value(key)}"
 end
 
 # Create and start listener
@@ -32,6 +41,6 @@ begin
   listener.join
 rescue Interrupt
   puts "\nStopping listener..."
-  listener.stop
+  listener.sto
   puts "Listener stopped."
 end

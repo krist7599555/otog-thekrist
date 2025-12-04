@@ -17,7 +17,16 @@ hotkeys = {
   end,
   '<cmd>+<shift>+q' => lambda do
     puts "\n🔥 Hotkey 2 activated! (Cmd+Shift+Q)"
-  end
+  end,
+  '<cmd>' => lambda do
+    puts "\n🔥 Key (Cmd) is press"
+  end,
+  '<alt>' => lambda do
+    puts "\n🔥 Key (Alt) is press"
+  end,
+  '<shift>' => lambda do
+    puts "\n🔥 Key (Shift) is press"
+  end,
 }
 
 # Create listener

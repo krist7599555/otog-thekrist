@@ -22,8 +22,11 @@ module Rbnput
               end
 
     # Export backend classes
+    remove_const(:Button) if const_defined?(:Button)
     Button = backend::Button
+    remove_const(:Controller) if const_defined?(:Controller)
     Controller = backend::Controller
+    remove_const(:Listener) if const_defined?(:Listener)
     Listener = backend::Listener
 
     # Mouse event listener supporting synchronous iteration over events
