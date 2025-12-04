@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Placeholder for Windows Win32 keyboard implementation
-module Rbnpuy
+module Rbnput
   module Keyboard
     module Win32
       # TODO: Implement using Win32 API

@@ -1,12 +1,12 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/rbnpuy'
+require_relative '../lib/rbnput'
 
 # Example: Controlling the mouse
 puts "=== Mouse Control Example ==="
 
-mouse = Rbnpuy::Mouse::Controller.new
+mouse = Rbnput::Mouse::Controller.new
 
 # Get current position
 x, y = mouse.position
@@ -24,7 +24,7 @@ sleep 0.5
 
 # Click
 puts "Clicking left button..."
-mouse.click(Rbnpuy::Mouse::Button::LEFT, 1)
+mouse.click(Rbnput::Mouse::Button::LEFT, 1)
 sleep 0.5
 
 # Scroll

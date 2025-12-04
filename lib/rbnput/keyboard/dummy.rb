@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rbnpuy
+module Rbnput
   module Keyboard
     # Dummy implementation for unsupported platforms
     module Dummy

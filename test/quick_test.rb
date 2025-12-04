@@ -1,9 +1,9 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/rbnpuy'
+require_relative '../lib/rbnput'
 
-puts "=== Rbnpuy Quick Test ==="
+puts "=== Rbnput Quick Test ==="
 puts "Platform: #{RUBY_PLATFORM}"
 puts "Ruby version: #{RUBY_VERSION}"
 puts
@@ -11,7 +11,7 @@ puts
 # Test mouse controller
 puts "Testing Mouse Controller..."
 begin
-  mouse = Rbnpuy::Mouse::Controller.new
+  mouse = Rbnput::Mouse::Controller.new
   pos = mouse.position
   puts "  ✓ Mouse controller created"
   puts "  ✓ Current position: #{pos.inspect}"
@@ -24,9 +24,9 @@ puts
 # Test keyboard controller
 puts "Testing Keyboard Controller..."
 begin
-  keyboard = Rbnpuy::Keyboard::Controller.new
+  keyboard = Rbnput::Keyboard::Controller.new
   puts "  ✓ Keyboard controller created: #{keyboard.class.name}"
-  puts "  ✓ Available keys: #{Rbnpuy::Keyboard::Key.constants.size} constants"
+  puts "  ✓ Available keys: #{Rbnput::Keyboard::Key.constants.size} constants"
 rescue => e
   puts "  ✗ Error: #{e.message}"
 end
@@ -42,9 +42,9 @@ puts
 
 # Test key constants (sample)
 puts "Testing Key Constants (sample)..."
-puts "  ENTER: #{Rbnpuy::Keyboard::Key::ENTER.inspect}"
-puts "  CTRL: #{Rbnpuy::Keyboard::Key::CTRL.inspect}"
-puts "  SHIFT: #{Rbnpuy::Keyboard::Key::SHIFT.inspect}"
+puts "  ENTER: #{Rbnput::Keyboard::Key::ENTER.inspect}"
+puts "  CTRL: #{Rbnput::Keyboard::Key::CTRL.inspect}"
+puts "  SHIFT: #{Rbnput::Keyboard::Key::SHIFT.inspect}"
 
 puts
 puts "=== Test Complete ==="

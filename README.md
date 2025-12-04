@@ -1,4 +1,4 @@
-# Rbnpuy
+# Rbnput
 
 A Ruby library for controlling and monitoring input devices, inspired by Python's pynput.
 
@@ -9,7 +9,7 @@ This library allows you to control and monitor input devices. Currently, mouse a
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'rbnpuy'
+gem 'rbnput'
 ```
 
 And then execute:
@@ -18,17 +18,17 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install rbnpuy
+    $ gem install rbnput
 
 ## Usage
 
 ### Controlling the Mouse
 
 ```ruby
-require 'rbnpuy'
+require 'rbnput'
 
 # Create a mouse controller
-mouse = Rbnpuy::Mouse::Controller.new
+mouse = Rbnput::Mouse::Controller.new
 
 # Move the mouse to absolute position
 mouse.position = [100, 200]
@@ -40,11 +40,11 @@ x, y = mouse.position
 mouse.move(10, -10)
 
 # Click
-mouse.click(Rbnpuy::Mouse::Button::LEFT, 1)
+mouse.click(Rbnput::Mouse::Button::LEFT, 1)
 
 # Press and release
-mouse.press(Rbnpuy::Mouse::Button::LEFT)
-mouse.release(Rbnpuy::Mouse::Button::LEFT)
+mouse.press(Rbnput::Mouse::Button::LEFT)
+mouse.release(Rbnput::Mouse::Button::LEFT)
 
 # Scroll
 mouse.scroll(0, 2)  # Scroll down 2 units
@@ -53,7 +53,7 @@ mouse.scroll(0, 2)  # Scroll down 2 units
 ### Monitoring the Mouse
 
 ```ruby
-require 'rbnpuy'
+require 'rbnput'
 
 # Define callbacks
 on_move = ->(x, y) { puts "Mouse moved to (#{x}, #{y})" }
@@ -64,7 +64,7 @@ end
 on_scroll = ->(x, y, dx, dy) { puts "Scrolled (#{dx}, #{dy}) at (#{x}, #{y})" }
 
 # Create and start listener
-listener = Rbnpuy::Mouse::Listener.new(
+listener = Rbnput::Mouse::Listener.new(
   on_move: on_move,
   on_click: on_click,
   on_scroll: on_scroll
@@ -77,10 +77,10 @@ listener.join
 ### Controlling the Keyboard
 
 ```ruby
-require 'rbnpuy'
+require 'rbnput'
 
 # Create a keyboard controller
-keyboard = Rbnpuy::Keyboard::Controller.new
+keyboard = Rbnput::Keyboard::Controller.new
 
 # Press and release a key
 keyboard.press('a')
@@ -90,26 +90,26 @@ keyboard.release('a')
 keyboard.type("Hello, World!")
 
 # Press special keys
-keyboard.press(Rbnpuy::Keyboard::Key::CTRL)
+keyboard.press(Rbnput::Keyboard::Key::CTRL)
 keyboard.press('c')
 keyboard.release('c')
-keyboard.release(Rbnpuy::Keyboard::Key::CTRL)
+keyboard.release(Rbnput::Keyboard::Key::CTRL)
 
 # Use tap for quick press and release
-keyboard.tap(Rbnpuy::Keyboard::Key::ENTER)
+keyboard.tap(Rbnput::Keyboard::Key::ENTER)
 ```
 
 ### Monitoring the Keyboard
 
 ```ruby
-require 'rbnpuy'
+require 'rbnput'
 
 # Define callbacks
 on_press = ->(key) { puts "Key pressed: #{key}" }
 on_release = ->(key) { puts "Key released: #{key}" }
 
 # Create and start listener
-listener = Rbnpuy::Keyboard::Listener.new(
+listener = Rbnput::Keyboard::Listener.new(
   on_press: on_press,
   on_release: on_release
 )
@@ -124,7 +124,7 @@ listener.stop
 ### Global Hotkeys
 
 ```ruby
-require 'rbnpuy'
+require 'rbnput'
 
 # Define hotkeys
 hotkeys = {
@@ -133,7 +133,7 @@ hotkeys = {
 }
 
 # Create listener
-listener = Rbnpuy::Keyboard::GlobalHotKeys.new(hotkeys)
+listener = Rbnput::Keyboard::GlobalHotKeys.new(hotkeys)
 listener.start
 listener.join
 ```

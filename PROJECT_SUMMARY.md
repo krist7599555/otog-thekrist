@@ -1,4 +1,4 @@
-# Rbnpuy - Ruby Input Library
+# Rbnput - Ruby Input Library
 
 ## Project Summary
 
@@ -7,9 +7,9 @@ This is a Ruby clone of the Python `pynput` library, created to provide mouse an
 ## Project Structure
 
 ```
-rbnpuy/
+rbnput/
 ├── lib/
-│   └── rbnpuy/
+│   └── rbnput/
 │       ├── version.rb              # Version information
 │       ├── util.rb                 # Utility classes (AbstractListener, Events)
 │       ├── mouse.rb                # Mouse module entry point
@@ -38,7 +38,7 @@ rbnpuy/
 ├── CHANGELOG.md                    # Version history
 ├── LICENSE                         # LGPL-3.0 license
 ├── Gemfile                         # Gem dependencies
-├── rbnpuy.gemspec                  # Gem specification
+├── rbnput.gemspec                  # Gem specification
 └── .gitignore                      # Git ignore rules
 ```
 
@@ -113,7 +113,7 @@ ruby test/quick_test.rb
 
 ## Comparison with pynput
 
-| Feature | pynput (Python) | rbnpuy (Ruby) |
+| Feature | pynput (Python) | rbnput (Ruby) |
 |---------|----------------|---------------|
 | Mouse Control | ✅ | ✅ |
 | Mouse Monitoring | ✅ | ⚠️ (partial) |

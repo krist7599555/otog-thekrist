@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/rbnpuy'
+require_relative '../lib/rbnput'
 
 # Example: Global hotkeys
 puts "=== Global Hotkeys Example ==="
@@ -21,7 +21,7 @@ hotkeys = {
 }
 
 # Create listener
-listener = Rbnpuy::Keyboard::GlobalHotKeys.new(hotkeys)
+listener = Rbnput::Keyboard::GlobalHotKeys.new(hotkeys)
 
 begin
   listener.start

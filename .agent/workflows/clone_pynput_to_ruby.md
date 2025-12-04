@@ -1,7 +1,7 @@
 ---
 description: Clone the Python pynput library to a full Ruby implementation in the current folder
 ---
-# Workflow to clone pynput to Ruby (rbnpuy)
+# Workflow to clone pynput to Ruby (rbnput)
 
 1. **Copy Python source**
    ```bash
@@ -10,11 +10,11 @@ description: Clone the Python pynput library to a full Ruby implementation in th
    This provides reference implementation.
 
 2. **Map Python package structure to Ruby**
-   - `pynput/__init__.py` → `lib/rbnpuy.rb`
-   - `pynput/_util` → `lib/rbnpuy/util.rb`
-   - `pynput/mouse` → `lib/rbnpuy/mouse/*`
-   - `pynput/keyboard` → `lib/rbnpuy/keyboard/*`
-   - `pynput/_util/darwin.py` → `lib/rbnpuy/darwin_util.rb` (already created)
+   - `pynput/__init__.py` → `lib/rbnput.rb`
+   - `pynput/_util` → `lib/rbnput/util.rb`
+   - `pynput/mouse` → `lib/rbnput/mouse/*`
+   - `pynput/keyboard` → `lib/rbnput/keyboard/*`
+   - `pynput/_util/darwin.py` → `lib/rbnput/darwin_util.rb` (already created)
 
 3. **Generate Ruby skeletons**
    For each Python file, create a corresponding Ruby file with the same public API:
@@ -24,8 +24,8 @@ description: Clone the Python pynput library to a full Ruby implementation in th
 
 4. **Implement platform‑specific backends**
    - **macOS (Darwin)**: Already implemented using `DarwinUtil` and CoreGraphics.
-   - **Linux (Xorg)**: Use `ffi` to bind to X11 (`libX11.so`) for mouse/keyboard events. Create `lib/rbnpuy/mouse/xorg.rb` and `lib/rbnpuy/keyboard/xorg.rb`.
-   - **Windows (Win32)**: Use `ffi` to bind to `user32.dll` and `kernel32.dll`. Implement `lib/rbnpuy/mouse/win32.rb` and `lib/rbnpuy/keyboard/win32.rb`.
+   - **Linux (Xorg)**: Use `ffi` to bind to X11 (`libX11.so`) for mouse/keyboard events. Create `lib/rbnput/mouse/xorg.rb` and `lib/rbnput/keyboard/xorg.rb`.
+   - **Windows (Win32)**: Use `ffi` to bind to `user32.dll` and `kernel32.dll`. Implement `lib/rbnput/mouse/win32.rb` and `lib/rbnput/keyboard/win32.rb`.
    - For now, stub these files with `require_relative '../dummy'` and a warning, then replace with real FFI calls later.
 
 5. **Add event handling**
@@ -41,8 +41,8 @@ description: Clone the Python pynput library to a full Ruby implementation in th
    - Ensure the test suite runs on macOS CI.
 
 8. **Package the gem**
-   - Verify `rbnpuy.gemspec` includes all files.
-   - Run `gem build rbnpuy.gemspec` and `gem install ./rbnpuy-0.1.0.gem`.
+   - Verify `rbnput.gemspec` includes all files.
+   - Run `gem build rbnput.gemspec` and `gem install ./rbnput-0.1.0.gem`.
 
 9. **Continuous Integration**
    - Create a GitHub Actions workflow (`.github/workflows/ci.yml`) to run tests on macOS, Linux, and Windows.

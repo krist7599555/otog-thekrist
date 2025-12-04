@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "rbnpuy"
+require "rbnput"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

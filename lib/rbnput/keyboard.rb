@@ -2,7 +2,7 @@
 
 require_relative 'keyboard/base'
 
-module Rbnpuy
+module Rbnput
   # The module containing keyboard classes
   module Keyboard
     # Determine backend and load appropriate implementation

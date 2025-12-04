@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rbnpuy
+module Rbnput
   module Mouse
     # Mouse button enumeration
     module Button
@@ -21,7 +21,7 @@ module Rbnpuy
       attr_reader :log
 
       def initialize
-        @log = Rbnpuy.logger(self.class)
+        @log = Rbnput.logger(self.class)
       end
 
       # Get or set the current mouse position

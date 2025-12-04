@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/rbnpuy'
+require_relative '../lib/rbnput'
 
 # Example: Monitoring mouse events
 puts "=== Mouse Listener Example ==="
@@ -27,7 +27,7 @@ on_scroll = lambda do |x, y, dx, dy, injected|
 end
 
 # Create and start listener
-listener = Rbnpuy::Mouse::Listener.new(
+listener = Rbnput::Mouse::Listener.new(
   on_move: on_move,
   on_click: on_click,
   on_scroll: on_scroll

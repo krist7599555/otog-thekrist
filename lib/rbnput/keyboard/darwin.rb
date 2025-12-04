@@ -4,7 +4,7 @@ require 'ffi'
 require_relative 'base'
 require_relative '../darwin_util'
 
-module Rbnpuy
+module Rbnput
   module Keyboard
     # macOS implementation using Quartz/CoreGraphics
     module Darwin
@@ -30,7 +30,7 @@ module Rbnpuy
       attach_function :CGEventSetFlags, [:pointer, :uint64], :void
 
       # KeyCode implementation for macOS
-      class KeyCode < Rbnpuy::Keyboard::KeyCode
+      class KeyCode < Rbnput::Keyboard::KeyCode
         attr_reader :_is_media
 
         def initialize(vk: nil, char: nil, is_dead: false, _is_media: false, **kwargs)
@@ -113,7 +113,7 @@ module Rbnpuy
       end
 
       # macOS Keyboard Controller
-      class Controller < Rbnpuy::Keyboard::Controller
+      class Controller < Rbnput::Keyboard::Controller
         def initialize
           super
           @event_source = Darwin.CGEventSourceCreate(1)
@@ -213,7 +213,7 @@ module Rbnpuy
       end
 
       # macOS Keyboard Listener
-      class Listener < Rbnpuy::Keyboard::Listener
+      class Listener < Rbnput::Keyboard::Listener
         include DarwinUtil::ListenerMixin
 
         # Event types

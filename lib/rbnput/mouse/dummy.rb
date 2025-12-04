@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Rbnpuy
+module Rbnput
   module Mouse
     # Dummy implementation for unsupported platforms
     module Dummy

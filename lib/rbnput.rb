@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# Rbnpuy - Ruby Input Library
+# Rbnput - Ruby Input Library
 # Copyright (C) 2025
 #
 # This program is free software: you can redistribute it and/or modify it under
@@ -13,16 +13,16 @@
 # FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License for more
 # details.
 
-require_relative "rbnpuy/version"
-require_relative "rbnpuy/util"
-require_relative "rbnpuy/keyboard"
-require_relative "rbnpuy/mouse"
+require_relative "rbnput/version"
+require_relative "rbnput/util"
+require_relative "rbnput/keyboard"
+require_relative "rbnput/mouse"
 
-# The main Rbnpuy module
+# The main Rbnput module
 #
 # This module imports keyboard and mouse submodules for controlling
 # and monitoring input devices.
-module Rbnpuy
+module Rbnput
   class Error < StandardError; end
 
   # Creates a logger with a name suitable for a specific class

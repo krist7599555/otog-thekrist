@@ -2,7 +2,7 @@
 
 require 'set'
 
-module Rbnpuy
+module Rbnput
   module Keyboard
     # Represents a key code used by the operating system
     class KeyCode
@@ -132,7 +132,7 @@ module Rbnpuy
       attr_reader :log
 
       def initialize
-        @log = Rbnpuy.logger(self.class)
+        @log = Rbnput.logger(self.class)
         @modifiers = Set.new
         @modifiers_lock = Mutex.new
       end

@@ -4,7 +4,7 @@ require 'ffi'
 require_relative 'base'
 require_relative '../darwin_util'
 
-module Rbnpuy
+module Rbnput
   module Mouse
     # macOS implementation using Quartz/CoreGraphics
     module Darwin
@@ -37,16 +37,16 @@ module Rbnpuy
 
       # Button mapping
       module Button
-        UNKNOWN = Rbnpuy::Mouse::Button::UNKNOWN
-        LEFT = Rbnpuy::Mouse::Button::LEFT
-        MIDDLE = Rbnpuy::Mouse::Button::MIDDLE
-        RIGHT = Rbnpuy::Mouse::Button::RIGHT
-        X1 = Rbnpuy::Mouse::Button::X1
-        X2 = Rbnpuy::Mouse::Button::X2
+        UNKNOWN = Rbnput::Mouse::Button::UNKNOWN
+        LEFT = Rbnput::Mouse::Button::LEFT
+        MIDDLE = Rbnput::Mouse::Button::MIDDLE
+        RIGHT = Rbnput::Mouse::Button::RIGHT
+        X1 = Rbnput::Mouse::Button::X1
+        X2 = Rbnput::Mouse::Button::X2
       end
 
       # macOS Mouse Controller
-      class Controller < Rbnpuy::Mouse::Controller
+      class Controller < Rbnput::Mouse::Controller
         def initialize
           super
           @event_source = Darwin.CGEventSourceCreate(1)
@@ -112,7 +112,7 @@ module Rbnpuy
       end
 
       # macOS Mouse Listener
-      class Listener < Rbnpuy::Mouse::Listener
+      class Listener < Rbnput::Mouse::Listener
         include DarwinUtil::ListenerMixin
 
         # Event types

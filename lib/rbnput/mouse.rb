@@ -2,7 +2,7 @@
 
 require_relative 'mouse/base'
 
-module Rbnpuy
+module Rbnput
   # The module containing mouse classes
   module Mouse
     # Determine backend and load appropriate implementation

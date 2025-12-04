@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require_relative '../lib/rbnpuy'
+require_relative '../lib/rbnput'
 
 # Example: Monitoring keyboard events
 puts "=== Keyboard Listener Example ==="
@@ -22,7 +22,7 @@ on_release = lambda do |key, injected|
 end
 
 # Create and start listener
-listener = Rbnpuy::Keyboard::Listener.new(
+listener = Rbnput::Keyboard::Listener.new(
   on_press: on_press,
   on_release: on_release
 )

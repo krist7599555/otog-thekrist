@@ -8,7 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2025-12-02
 
 ### Added
-- Initial release of Rbnpuy
+- Initial release of Rbnput
 - Mouse control functionality
   - Move cursor to absolute position
   - Move cursor relative to current position

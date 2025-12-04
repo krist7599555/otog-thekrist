@@ -2,7 +2,7 @@
 
 require 'ffi'
 
-module Rbnpuy
+module Rbnput
   module DarwinUtil
     extend FFI::Library
     ffi_lib ['/System/Library/Frameworks/ApplicationServices.framework/ApplicationServices',

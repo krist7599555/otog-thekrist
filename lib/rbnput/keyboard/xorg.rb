@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Placeholder for Linux X11 keyboard implementation
-module Rbnpuy
+module Rbnput
   module Keyboard
     module Xorg
       # TODO: Implement using X11 bindings

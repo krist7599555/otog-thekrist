@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Placeholder for Windows Win32 implementation
-module Rbnpuy
+module Rbnput
   module Mouse
     module Win32
       # TODO: Implement using Win32 API

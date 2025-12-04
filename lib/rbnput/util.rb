@@ -2,7 +2,7 @@
 
 require 'thread'
 
-module Rbnpuy
+module Rbnput
   module Util
     # Abstract base class for input device listeners
     class AbstractListener
@@ -15,7 +15,7 @@ module Rbnpuy
         @daemon = kwargs.fetch(:daemon, true)
         @condition = ConditionVariable.new
         @mutex = Mutex.new
-        @log = Rbnpuy.logger(self.class)
+        @log = Rbnput.logger(self.class)
       end
 
       # Start the listener in a separate thread
