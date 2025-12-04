@@ -1,3 +1,7 @@
+<p align="center">
+  <img width="300" height="300" alt="Gemini_Generated_Image_6q3qiy6q3qiy6q3q" src="https://github.com/user-attachments/assets/43f9ac1e-ed6a-49e6-af6b-a006dca7637f" />
+</p>
+
 # OTOG.TheKrist – Competitive Programming สำหรับนักเรียนไทย  
 **เตรียมสอบโอลิมปิกคอมพิวเตอร์ POSN / IPST / TOI / IOI (Beta – 2025, Rewrite in Ruby)**
 
