@@ -148,23 +148,6 @@ module Rbnput
         end
       end
     end
-
-    # Determine the appropriate backend for the current platform
-    def self.backend(module_name)
-      case RUBY_PLATFORM
-      when /darwin/
-        require_relative "#{module_name.split('::').last.downcase}/darwin"
-        Object.const_get("#{module_name}::Darwin")
-      when /linux/
-        require_relative "#{module_name.split('::').last.downcase}/xorg"
-        Object.const_get("#{module_name}::Xorg")
-      when /mingw|mswin/
-        require_relative "#{module_name.split('::').last.downcase}/win32"
-        Object.const_get("#{module_name}::Win32")
-      else
-        require_relative "#{module_name.split('::').last.downcase}/dummy"
-        Object.const_get("#{module_name}::Dummy")
-      end
-    end
+    
   end
 end

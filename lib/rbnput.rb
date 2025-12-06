@@ -15,8 +15,8 @@
 
 require_relative "rbnput/version"
 require_relative "rbnput/util"
-require_relative "rbnput/keyboard"
-require_relative "rbnput/mouse"
+require_relative "rbnput/keyboard/darwin"
+# require_relative "rbnput/mouse"
 
 # The main Rbnput module
 #
@@ -24,11 +24,8 @@ require_relative "rbnput/mouse"
 # and monitoring input devices.
 module Rbnput
   class Error < StandardError; end
-
-  # Creates a logger with a name suitable for a specific class
-  #
-  # @param klass [Class] The class for which to create a logger
-  # @return [Logger] a logger instance
+  Listener = ::Rbnput::DarwinListener
+  
   def self.logger(klass)
     require 'logger'
     Logger.new($stdout).tap do |log|
