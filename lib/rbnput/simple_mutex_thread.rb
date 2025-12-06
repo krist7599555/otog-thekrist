@@ -2,7 +2,7 @@
 
 require 'thread'
 
-class Rbnput::BaseThread
+class Rbnput::SimpleMutexThread
 
   protected
   # Platform-specific run implementation

@@ -9,15 +9,12 @@ puts "Press any keys. Press Ctrl+C to exit."
 puts
 
 # Define callbacks
-on_press = lambda do |key, injected|
-  return if injected
-  puts "Key pressed: #{key}"
+on_press = lambda do |key|
+  puts "\b ⬇️ up   : #{key}"
 end
 
-on_release = lambda do |key, injected|
-  return if injected
-  
-  puts "Key released: #{key}"
+on_release = lambda do |key|
+  puts "\b ⬆️ down : #{key}"
 end
 
 # Create and start listener
@@ -31,6 +28,6 @@ begin
   listener.join
 rescue Interrupt
   puts "\nStopping listener..."
-  listener.sto
+  # listener.sto
   puts "Listener stopped."
 end

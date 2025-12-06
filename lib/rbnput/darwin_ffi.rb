@@ -25,6 +25,16 @@ module Rbnput::DarwinFFI
   KCFRunLoopRunStopped = 2
   KCFRunLoopRunTimedOut = 3
   KCFRunLoopRunHandledSource = 4
+
+  KCGEventSourceUnixProcessID = 1
+  KCGKeyboardEventKeycode = 9
+
+  KCGScrollWheelEventDeltaAxis1 = 11 # Y
+  KCGScrollWheelEventDeltaAxis2 = 12 # X 
+
+  KCGEventKeyDown = 10
+  KCGEventKeyUp = 11
+  KCGEventFlagsChanged = 12
   
   # We need to get the kCFRunLoopDefaultMode constant value
   # It's a CFStringRef. For simplicity in FFI, we can often pass NULL (0) for default mode in some APIs,
@@ -55,17 +65,4 @@ module Rbnput::DarwinFFI
   attach_function :CGEventSourceCreate, [:int], :pointer
   attach_function :CFRelease, [:pointer], :void
   attach_function :CGEventSetFlags, [:pointer, :uint64], :void
-  
-  # Constants for fields
-  KCGEventSourceUnixProcessID = 1
-  KCGKeyboardEventKeycode = 9
-  KCGScrollWheelEventDeltaAxis1 = 11 # Y
-  KCGScrollWheelEventDeltaAxis2 = 12 # X
-  
-  KCGEventKeyDown = 10
-  KCGEventKeyUp = 11
-  KCGEventFlagsChanged = 12
-  
-  KCG_EVENT_FLAG_KEYDOWN_KEYUP_FLAGSCHANGED = (1 << KCGEventKeyDown) | (1 << KCGEventKeyUp) | (1 << KCGEventFlagsChanged)
-
 end

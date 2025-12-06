@@ -24,12 +24,4 @@ require_relative "rbnput/darwin_listener"
 module Rbnput
   class Error < StandardError; end
   Listener = ::Rbnput::DarwinListener
-  
-  def self.logger(klass)
-    require 'logger'
-    Logger.new($stdout).tap do |log|
-      log.progname = "#{klass.name}"
-      log.level = Logger::WARN
-    end
-  end
 end
