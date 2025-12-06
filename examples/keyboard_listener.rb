@@ -8,26 +8,19 @@ puts "=== Keyboard Listener Example ==="
 puts "Press any keys. Press Ctrl+C to exit."
 puts
 
-# Define callbacks
-on_press = lambda do |key|
+# Create and start listener
+listener = Rbnput::Listener.new
+listener.on_press do |key|
   puts "\b ⬇️ up   : #{key}"
 end
-
-on_release = lambda do |key|
+listener.on_release do |key|
   puts "\b ⬆️ down : #{key}"
 end
 
-# Create and start listener
-listener = Rbnput::Listener.new(
-  on_press: on_press,
-  on_release: on_release
-)
-
 begin
-  listener.start
-  listener.join
+  listener.start # start thread
+  listener.join # wait thread exit 
 rescue Interrupt
   puts "\nStopping listener..."
-  # listener.sto
   puts "Listener stopped."
 end

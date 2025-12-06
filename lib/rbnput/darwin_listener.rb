@@ -19,6 +19,13 @@ module Rbnput
     end
     attr_reader :on_press, :on_release
 
+    def on_press(&proc)
+      @on_press = proc
+    end
+    def on_release(&proc)
+      @on_press = proc
+    end
+
     def _run
       unless Rbnput::DarwinFFI.AXIsProcessTrusted()
         @log.warn("Process is not trusted! Input monitoring will not work until added to accessibility clients.")
