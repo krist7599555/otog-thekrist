@@ -1,154 +1,47 @@
-# Rbnput
+# rbnput-darwin-minimal
 
-A Ruby library for controlling and monitoring input devices, inspired by Python's pynput.
+ไลบรารี Ruby ขนาดเล็กสำหรับตรวจจับการกดแป้นพิมพ์บนระบบ macOS โดยใช้ FFI เชื่อมต่อกับ system library ของ Darwin โดยตรง
 
-This library allows you to control and monitor input devices. Currently, mouse and keyboard input and monitoring are supported.
+## คุณสมบัติ
 
-## Installation
+- ตรวจจับการกดคีย์แบบ low-level
+- ใช้ FFI เชื่อมต่อกับ Carbon / IOKit
+- ไม่มี dependency หนัก
+- โค้ดสั้นและเข้าใจง่าย เหมาะสำหรับเรียนรู้หรือฝังใช้งานในโปรเจคเล็กๆ
 
-Add this line to your application's Gemfile:
 
-```ruby
-gem 'rbnput'
-```
-
-And then execute:
-
-    $ bundle install
-
-Or install it yourself as:
-
-    $ gem install rbnput
-
-## Usage
-
-### Controlling the Mouse
+## ตัวอย่างการเริ่ม listener เพื่อรับ keycode
 
 ```ruby
-require 'rbnput'
-
-# Create a mouse controller
-mouse = Rbnput::Mouse::Controller.new
-
-# Move the mouse to absolute position
-mouse.position = [100, 200]
-
-# Get current position
-x, y = mouse.position
-
-# Move relative to current position
-mouse.move(10, -10)
-
-# Click
-mouse.click(Rbnput::Mouse::Button::LEFT, 1)
-
-# Press and release
-mouse.press(Rbnput::Mouse::Button::LEFT)
-mouse.release(Rbnput::Mouse::Button::LEFT)
-
-# Scroll
-mouse.scroll(0, 2)  # Scroll down 2 units
-```
-
-### Monitoring the Mouse
-
-```ruby
-require 'rbnput'
-
-# Define callbacks
-on_move = ->(x, y) { puts "Mouse moved to (#{x}, #{y})" }
-on_click = ->(x, y, button, pressed) do
-  action = pressed ? 'Pressed' : 'Released'
-  puts "#{action} #{button} at (#{x}, #{y})"
+require "rbnput"
+listener = Rbnput::Listener.new
+listener.on_press do |key|
+  puts "Key up   : #{key}"
 end
-on_scroll = ->(x, y, dx, dy) { puts "Scrolled (#{dx}, #{dy}) at (#{x}, #{y})" }
-
-# Create and start listener
-listener = Rbnput::Mouse::Listener.new(
-  on_move: on_move,
-  on_click: on_click,
-  on_scroll: on_scroll
-)
+listener.on_release do |key|
+  puts "Key down : #{key}"
+end
 
 listener.start
 listener.join
 ```
 
-### Controlling the Keyboard
+## ข้อจำกัด
+	•	รองรับเฉพาะ macOS (Darwin)
+	•	ต้องรันบน Ruby ที่รองรับ ffi
+	•	ต้องมีสิทธิ์ “Input Monitoring” ใน System Settings
 
-```ruby
-require 'rbnput'
+## การให้สิทธิ์ (Permissions)
+	1.	เปิด System Settings
+	2.	ไปที่ Privacy & Security
+	3.	เลือก Input Monitoring
+	4.	เพิ่ม Ruby หรือ Terminal ที่ใช้รันโปรแกรมของคุณเข้าไป
 
-# Create a keyboard controller
-keyboard = Rbnput::Keyboard::Controller.new
+## โฟล์
 
-# Press and release a key
-keyboard.press('a')
-keyboard.release('a')
-
-# Type a string
-keyboard.type("Hello, World!")
-
-# Press special keys
-keyboard.press(Rbnput::Keyboard::Key::CTRL)
-keyboard.press('c')
-keyboard.release('c')
-keyboard.release(Rbnput::Keyboard::Key::CTRL)
-
-# Use tap for quick press and release
-keyboard.tap(Rbnput::Keyboard::Key::ENTER)
-```
-
-### Monitoring the Keyboard
-
-```ruby
-require 'rbnput'
-
-# Define callbacks
-on_press = ->(key) { puts "Key pressed: #{key}" }
-on_release = ->(key) { puts "Key released: #{key}" }
-
-# Create and start listener
-listener = Rbnput::Keyboard::Listener.new(
-  on_press: on_press,
-  on_release: on_release
-)
-
-listener.start
-listener.join
-
-# Stop listener
-listener.stop
-```
-
-### Global Hotkeys
-
-```ruby
-require 'rbnput'
-
-# Define hotkeys
-hotkeys = {
-  '<ctrl>+<alt>+h' => -> { puts 'Hotkey activated!' },
-  '<cmd>+<shift>+q' => -> { puts 'Quit hotkey!' }
-}
-
-# Create listener
-listener = Rbnput::Keyboard::GlobalHotKeys.new(hotkeys)
-listener.start
-listener.join
-```
-
-## Platform Support
-
-- **macOS**: Full support using Quartz and Cocoa frameworks.
-  - *Note*: Monitoring input (listeners) requires the application (Terminal, IDE, or Ruby process) to be granted Accessibility permissions in System Settings -> Privacy & Security -> Accessibility.
-- **Linux**: Placeholder support (future: X11 and evdev)
-- **Windows**: Placeholder support (future: Win32 API)
-
-## License
-
-This project is licensed under the GNU Lesser General Public License v3 (LGPLv3) - see the LICENSE file for details.
-
-## Acknowledgments
-
-This library is inspired by and based on the design of [pynput](https://github.com/moses-palmer/pynput) by Moses Palmér.
+- [./lib/rbnput/darwin_listener.rb | Most Of Implement](./lib/rbnput/darwin_listener.rb)
+- [./lib/rbnput.rb | Lib Endpoint](./lib/rbnput.rb)
+- [./lib/rbnput/key_code_const.rb | All Key Map](./lib/rbnput/key_code_const.rb)
+- [./lib/rbnput/key_code.rb | Class KeyCode(vk, is_media)](./lib/rbnput/key_code.rb)
+- [./lib/rbnput/darwin_ffi.rb | SystemLibrary Bind FFI](./lib/rbnput/darwin_ffi.rb)
+- [./lib/rbnput/simple_mutex_thread.rb | Boring Thread Implement](./lib/rbnput/simple_mutex_thread.rb)
