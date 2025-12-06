@@ -14,8 +14,7 @@
 # details.
 
 require_relative "rbnput/version"
-require_relative "rbnput/util"
-require_relative "rbnput/keyboard/darwin"
+require_relative "rbnput/darwin_listener"
 # require_relative "rbnput/mouse"
 
 # The main Rbnput module

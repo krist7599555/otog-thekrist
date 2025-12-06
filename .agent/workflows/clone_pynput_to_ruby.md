@@ -23,7 +23,7 @@ description: Clone the Python pynput library to a full Ruby implementation in th
    Use the existing macOS implementations as a template.
 
 4. **Implement platform‑specific backends**
-   - **macOS (Darwin)**: Already implemented using `DarwinUtil` and CoreGraphics.
+   - **macOS (Darwin)**: Already implemented using `DarwinFFI` and CoreGraphics.
    - **Linux (Xorg)**: Use `ffi` to bind to X11 (`libX11.so`) for mouse/keyboard events. Create `lib/rbnput/mouse/xorg.rb` and `lib/rbnput/keyboard/xorg.rb`.
    - **Windows (Win32)**: Use `ffi` to bind to `user32.dll` and `kernel32.dll`. Implement `lib/rbnput/mouse/win32.rb` and `lib/rbnput/keyboard/win32.rb`.
    - For now, stub these files with `require_relative '../dummy'` and a warning, then replace with real FFI calls later.
